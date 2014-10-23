@@ -1,0 +1,21 @@
+{
+  "name": "Qwackle",
+  "version": "0.0.0",
+  "description": "Qwackle",
+  "main": "server.js",
+  "author": {
+    "name": "myoung",
+    "email": "mpyoung@gmail.com"
+  },
+  "dependencies": {
+    "express": "~4.9.8",
+    "vash": "~0.7.12-1"
+  },
+  "devDependencies": {
+    "chai": "^1.9.2",
+    "grunt": "^0.4.5",
+    "grunt-nodemon": "^0.3.0",
+    "mocha": "^2.0.1",
+    "sinon": "^1.10.3"
+  }
+}
