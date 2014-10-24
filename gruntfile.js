@@ -27,6 +27,7 @@
     });
 
     grunt.loadNpmTasks('grunt-nodemon');
+    grunt.loadNpmTasks('grunt-mocha');
     //grunt.registerHelper('default', ['nodemon']);
     grunt.registerTask('test', ['mocha']);
 }
