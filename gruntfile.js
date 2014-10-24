@@ -1,4 +1,7 @@
 ﻿module.exports = function(grunt) {
+    grunt.loadNpmTasks('grunt-nodemon');
+    grunt.loadNpmTasks('grunt-mocha-test');
+
     grunt.initConfig({
         nodemon: {
             all: {
@@ -10,24 +13,22 @@
         },
 
         // Test.
-        mocha:
+        mochaTest:
         {
             test:
             {
                 options:
                 {
-                    run: true,
-                    debug: true,
-                    reporter: 'Spec'
+                    quiet: false,
+                    reporter: 'spec',
+                    require: 'specs/helpers/chai.js'
                 },
 
-                src: [ 'specs' ]
+                src: [ 'specs/game/**/*.js' ]
             }
         }
     });
 
-    grunt.loadNpmTasks('grunt-nodemon');
-    grunt.loadNpmTasks('grunt-mocha');
-    //grunt.registerHelper('default', ['nodemon']);
-    grunt.registerTask('test', ['mocha']);
-}
+    //grunt.registerTask('default', ['nodemon']);
+    grunt.registerTask('test', 'mochaTest');
+ }
