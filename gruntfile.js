@@ -28,4 +28,5 @@
 
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.registerHelper('default', ['nodemon']);
+    grunt.registerTask('test', ['mocha']);
 }
