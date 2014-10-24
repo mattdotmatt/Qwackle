@@ -14,6 +14,16 @@ function Game(player1, player2) {
             tiles:new Array(6)
         }
     );
+
+    this.placeTiles = function(player,tiles){
+        if(player!=this.turn) return {moveWasOk:false};
+        if(this.turn == 'Kerry'){
+            this.turn = 'Julie';
+        } else {
+            this.turn = 'Kerry';
+        }
+        return {moveWasOk:true};
+    };
 }
 
 module.exports = Game;

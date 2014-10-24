@@ -7,6 +7,22 @@
                     watchedExtensions: ['js']
                 }
             }
+        },
+
+        // Test.
+        mocha:
+        {
+            test:
+            {
+                options:
+                {
+                    run: true,
+                    debug: true,
+                    reporter: 'Spec'
+                },
+
+                src: [ 'specs' ]
+            }
         }
     });
 
