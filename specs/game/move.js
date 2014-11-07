@@ -7,24 +7,24 @@ describe('When playing a move', function () {
     var game;
 
     before(function () {
-        game = new Game('Kerry','Julie');
+        game = new Game('Kerry', 'Julie');
     });
 
     it('initially, it should be Kerrys turn', function () {
         var result = game.turn;
-        expect(result).equal('Kerry');
+        expect(result.name).equal('Kerry');
     });
 
     it('after Kerrys turn, it should be Julies turn', function () {
         game.placeTiles('Kerry',['tile1','tile2']);
         var result = game.turn;
-        expect(result).equal('Julie');
+        expect(result.name).equal('Julie');
     });
 
     it('after Julies turn, it should be Kerrys turn again', function () {
         game.placeTiles('Julie',['tile1','tile2']);
         var result = game.turn;
-        expect(result).equal('Kerry');
+        expect(result.name).equal('Kerry');
     });
 
     it('if it is Kerrys turn, Julie cannot play', function () {

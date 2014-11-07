@@ -1,5 +1,28 @@
-﻿@html.extend('layout', function(model){
+﻿<script src="/lib/socket.io-client/socket.io.js"></script>
+<script src="/lib/jquery/dist/jquery.js"></script>
+@html.extend('layout', function(model){
 	@html.block("body", function(model){
 		<h1>@model.title</h1>
+		<input type="text" id="player"></input>
+		<button id="join" >Join game</button>
+        <h2>Players</h2>
+		<ul id="players"><li>
+
+		</li></ul>
+
 	})
 })
+<script>
+// connect to the socket server
+var socket = io().connect();
+
+$('#join').click(function(){
+    socket.emit('join', $('#player').val());
+    return false;
+})
+
+socket.on('info', function (data) {
+    console.log(data);
+
+});
+</script>
