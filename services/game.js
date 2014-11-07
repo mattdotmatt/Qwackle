@@ -5,8 +5,9 @@
 var Player = require('../services/player');
 var Score = require('../services/score');
 
-var Game = function (player1Name, player2Name) {
+var Game = function (gameName, player1Name, player2Name) {
 
+    this.name = gameName,
     this.tiles = new Array(96);
     this.players = {
         player1: new Player(player1Name),

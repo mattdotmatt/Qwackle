@@ -1,6 +1,7 @@
 ﻿(function(homeController) {
 
     var data = require("../data");
+    var Game = require('../services/game');
 
     homeController.init = function(app) {
 
@@ -16,7 +17,8 @@
 
         app.post("/newGame", function (req,res){
             var gameName = req.body.gameName;
-            data.createNewGame(gameName, function(err){
+            game = new Game(gameName, 'Kerry', 'Julie');
+            data.createNewGame(game, function(err){
                 if (err){
                     console.log(err);
                 }

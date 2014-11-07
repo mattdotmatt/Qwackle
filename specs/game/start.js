@@ -8,7 +8,7 @@ describe('When starting the game', function () {
     var game;
 
     before(function () {
-        game = new Game('Kerry', 'Julie');
+        game = new Game('Game Name', 'Kerry', 'Julie');
     });
 
     it('there should be 96 tiles', function () {

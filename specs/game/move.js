@@ -7,7 +7,7 @@ describe('When playing a move', function () {
     var game;
 
     before(function () {
-        game = new Game('Kerry', 'Julie');
+        game = new Game('Game Name', 'Kerry', 'Julie');
     });
 
     it('initially, it should be Kerrys turn', function () {

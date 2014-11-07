@@ -10,7 +10,7 @@
 		        <h2><a href="/game">Game me up</a></h2>
                 <ul>
                     @model.games.forEach(function(game){
-                        <a href=""><li id=@game.id>@game.name</li></a>
+                        <a href="/game/@game._id"><li id=@game._id>@game.name</li></a>
                     })
                 </ul>
             </div>
