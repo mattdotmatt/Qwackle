@@ -15,7 +15,8 @@
                 } else {
                     theDb = {
                         db: db,
-                        games:db.collection("games")
+                        games:db.collection("games"),
+                        users:db.collection("users")
                     };
                     next(null,theDb);
                 }

@@ -10,7 +10,8 @@
                 res.render("index", {
                     title: "Games",
                     error: err,
-                    games: results
+                    games: results,
+                    user: req.user
                 });
             })
         });
