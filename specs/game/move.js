@@ -7,7 +7,7 @@ describe('When playing a move', function () {
     var game;
 
     before(function () {
-        game = new Game('Game Name', 'Kerry', 'Julie');
+        game = new Game('Game Name', ['Kerry', 'Julie', 'Someone else']);
     });
 
     it('initially, it should be Kerrys turn', function () {
@@ -21,8 +21,14 @@ describe('When playing a move', function () {
         expect(result.name).equal('Julie');
     });
 
-    it('after Julies turn, it should be Kerrys turn again', function () {
+    it('after Julies turn, it should be Someone else turn', function () {
         game.placeTiles('Julie',['tile1','tile2']);
+        var result = game.turn;
+        expect(result.name).equal('Someone else');
+    });
+
+    it('after Someone else turn, it should be Kerrys turn again', function () {
+        game.placeTiles('Someone else',['tile1','tile2']);
         var result = game.turn;
         expect(result.name).equal('Kerry');
     });

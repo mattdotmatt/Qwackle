@@ -6,7 +6,7 @@
     var database = require("./database");
     var ObjectId = require('mongodb').ObjectID;
 
-    data.getGames = function(next){
+    data.getGames = function(player, next){
         database.getDb(function (err ,db){
            if(err){
                next(err,null);

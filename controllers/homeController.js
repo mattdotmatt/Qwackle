@@ -1,12 +1,11 @@
 ﻿(function(homeController) {
 
-    var data = require("../data");
-    var Game = require('../services/game');
+    var games = require('../services/games');
 
     homeController.init = function(app) {
 
         app.get("/", function(req, res) {
-            data.getGames(function(err,results){
+            games.getMyGames("Kerry",function(err,results){
                 res.render("index", {
                     title: "Games",
                     error: err,
@@ -15,10 +14,10 @@
                 });
             })
         });
-
+/*
         app.post("/newGame", function (req,res){
             var gameName = req.body.gameName;
-            game = new Game(gameName, 'Kerry', 'Julie');
+            game = new Game(gameName, ['Kerry', 'Julie']);
             data.createNewGame(game, function(err){
                 if (err){
                     console.log(err);
@@ -26,5 +25,6 @@
                 res.redirect("/");
             });
         });
+*/
     };
 })(module.exports);

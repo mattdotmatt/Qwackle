@@ -8,7 +8,7 @@ describe('When starting the game', function () {
     var game;
 
     before(function () {
-        game = new Game('Game Name', 'Kerry', 'Julie');
+        game = new Game('Game Name', ['Kerry', 'Julie', 'Someone Else']);
     });
 
     it('there should be 96 tiles', function () {
@@ -18,20 +18,16 @@ describe('When starting the game', function () {
 
     it('there should be a player called Kerry and a player called Julie', function () {
         var result = game.players;
-        expect(result.player1.name).equal('Kerry');
-        expect(result.player2.name).equal('Julie');
+        expect(result[0].name).equal('Kerry');
+        expect(result[1].name).equal('Julie');
+        expect(result[2].name).equal('Someone Else');
     });
 
-    it('Kerry should have 6 tiles', function () {
+    it('everyone should have 6 tiles', function () {
         var result = game.players;
-        expect(result.player1.name).equal('Kerry');
-        expect(result.player1.tiles.length).equal(6);
-    });
-
-    it('Julie should have 6 tiles', function () {
-        var result = game.players;
-        expect(result.player2.name).equal('Julie');
-        expect(result.player2.tiles.length).equal(6);
+        expect(result[0].tiles.length).equal(6);
+        expect(result[1].tiles.length).equal(6);
+        expect(result[2].tiles.length).equal(6);
     });
 
     it('it should be Kerrys turn', function () {
