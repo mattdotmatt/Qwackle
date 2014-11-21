@@ -24,7 +24,7 @@
                     require: 'specs/helpers/chai.js'
                 },
 
-                src: [ 'specs/game/**/*.js' ]
+                src: [ 'specs/game/**/*.js', 'specs/player/**/*.js' ]
             }
         }
     });
