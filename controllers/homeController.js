@@ -1,11 +1,11 @@
-﻿(function(homeController) {
+﻿var games = require('../services/games');
 
-    var games = require('../services/games');
+(function(homeController) {
 
     homeController.init = function(app) {
 
         app.get("/", function(req, res) {
-            games.getMyGames("Kerry",function(err,results){
+            games.prototype.getMyGames("Kerry",function(err,results){
                 res.render("index", {
                     title: "Games",
                     error: err,
