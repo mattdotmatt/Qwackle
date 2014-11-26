@@ -8,5 +8,10 @@ var Games = function () {};
 Games.prototype.getMyGames = function(player, next) {
     data.getGames(player, next);
 };
-module.exports = Games;
+
+Games.prototype.getMyGame = function(id, next) {
+    data.getGame(id, next);
+};
+
+module.exports = new Games();
 

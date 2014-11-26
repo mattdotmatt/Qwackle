@@ -20,11 +20,17 @@ app.use(session({secret: 'QwackleBackle',
     resave: true}));
 app.use(flash());
 
+require('./routes')(app);
+
+/*
+ app.post("/newGame", function (req,res){
 // use authentication
+*/
 var auth = require("./auth");
 auth.init(app);
 
 var controllers = require("./controllers");
 controllers.init(app);
+
 
 module.exports = app;

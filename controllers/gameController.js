@@ -1,16 +1,16 @@
-﻿(function(gameController) {
+﻿
+var games = require('../services/games');
 
-    var data = require("../data");
+var GameController = function () {};
 
-    gameController.init = function(app) {
-        app.get("/game/:id", function(req, res) {
-            data.getGame(req.params.id,function(err,results){
-                res.render("game", {
-                    title: "Welcome back to your game",
-                    error: err,
-                    game: results
-                });
-            })
+GameController.prototype.game = function(req, res) {
+    games.getMyGame(req.params.id,function(err,results){
+        res.render("game", {
+            title: "Welcome back to your game",
+            error: err,
+            game: results
         });
-    };
-})(module.exports);
+    })
+};
+
+module.exports = GameController;
