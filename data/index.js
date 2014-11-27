@@ -11,7 +11,7 @@
            if(err){
                next(err,null);
            } else{
-               db.games.find().toArray(function(err, results){
+               db.games.find({'player':player}).toArray(function(err, results){
                    if(err){
                        next(err,null);
                    } else {
@@ -22,12 +22,12 @@
         });
     };
 
-    data.getGame = function(id, next){
+    data.getGame = function(player,id, next){
         database.getDb(function (err ,db){
             if(err){
                 next(err,null);
             } else{
-                db.games.findOne({ _id:new ObjectId(id)}, function(err, results){
+                db.games.findOne({ _id:new ObjectId(id),'player':player}, function(err, results){
                     if(err){
                         next(err,null);
                     } else {

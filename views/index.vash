@@ -3,23 +3,85 @@
         @if (model.error){
             <p class="text-error">Error occurred: @model.error</p>
         }
-        <div class="row">
-            <div class="col-lg-6">
-                <h2>Create a new game</h2>
-                <form action="/newGame" role="form" method="post" class="form-inline">
-                    <input type="text" name="gameName" class="form-control" placeholder="game" />
-                    <input type="text" name="player2" class="form-control" placeholder="your opponent" />
-                    <input type="submit" value = "New Game" class="btn btn-primary" />
-                </form>
+        @if (!model.user){
+            <h2>You need to login or register</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>Login if you are already registered</h2>
+
+                    <form action="/login" method="post" role="form" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-lg-1">Username</label>
+                            <div class="col-lg-5">
+                                <input type="text" name="username" class="form-control" placeholder="username" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-1">Password</label>
+                            <div class="col-lg-5">
+                                <input type="password" name="password" class="form-control" placeholder="password" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-offset-1 col-lg-5"><input type="submit" value="Submit" class="btn btn-primary" /></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-6">
+                    <h2>Register here if you arent</h2>
+                    <form action="/register" method="post" role="form" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-lg-1">Your Name</label>
+                            <div class="col-lg-5">
+                                <input type="text" name="name" class="form-control" placeholder="your name" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-1">Email</label>
+                            <div class="col-lg-5">
+                                <input type="text" name="email" class="form-control" placeholder="email" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-1">Username</label>
+                            <div class="col-lg-5">
+                                <input type="text" name="username" class="form-control" placeholder="username" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-1">Password</label>
+                            <div class="col-lg-5">
+                                <input type="password" name="password" class="form-control" placeholder="password" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-offset-1 col-lg-5"><input type="submit" value="Register" class="btn btn-primary" /></div>
+                        </div>
+                        <div class="form-group">
+                            <p class="text-muted">Or <a href="/login">login</a> if you already have an account.</p>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="col-lg-6">
-		        <h2>Current games</h2>
-                <ul>
-                    @model.games.forEach(function(game){
-                        <a href="/game/@game._id"><li id=@game._id>@game.name</li></a>
-                    })
-                </ul>
+        } else {
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>Create a new game</h2>
+                    <form action="/newGame" role="form" method="post" class="form-inline">
+                        <input type="text" name="gameName" class="form-control" placeholder="game" />
+                        <input type="text" name="player2" class="form-control" placeholder="your opponent" />
+                        <input type="submit" value = "New Game" class="btn btn-primary" />
+                    </form>
+                </div>
+                <div class="col-lg-6">
+                    <h2>Current games</h2>
+                    <ul>
+                        @model.games.forEach(function(game){
+                            <a href="/game/@game._id"><li id=@game._id>@game.name</li></a>
+                        })
+                    </ul>
+                </div>
             </div>
-        </div>
+        }
 	})
 })

@@ -13,7 +13,10 @@ describe('When opening the main page', function () {
 
 
     before(function () {
-        gamesMock.getMyGames = sinon.stub().callsArgWith(1, null, ['game1','game2','game3']);
+        gamesMock.getMyGames = sinon.stub().callsArgWith(1, null, [
+            {_id:'1',name:'game1', active:true},
+            {_id:'2',name:'game2', active:true},
+            {_id:'3',name:'game3', active:false}]);
         HomeController.__set__({
           'games': gamesMock
         });
@@ -29,9 +32,15 @@ describe('When opening the main page', function () {
         homeController.home(req,res);
 
         expect(spy.lastCall.args[1].games.length).equal(3);
-        expect(spy.lastCall.args[1].games[0]).equal('game1');
-        expect(spy.lastCall.args[1].games[1]).equal('game2');
-        expect(spy.lastCall.args[1].games[2]).equal('game3');
+        expect(spy.lastCall.args[1].games[0]._id).equal('1');
+        expect(spy.lastCall.args[1].games[0].name).equal('game1');
+        expect(spy.lastCall.args[1].games[0].active).equal(true);
+        expect(spy.lastCall.args[1].games[1]._id).equal('2');
+        expect(spy.lastCall.args[1].games[1].name).equal('game2');
+        expect(spy.lastCall.args[1].games[1].active).equal(true);
+        expect(spy.lastCall.args[1].games[2]._id).equal('3');
+        expect(spy.lastCall.args[1].games[2].name).equal('game3');
+        expect(spy.lastCall.args[1].games[2].active).equal(false);
         expect(gamesMock.getMyGames.calledOnce);
         expect(gamesMock.getMyGames.calledWith('Kerry'));
     });

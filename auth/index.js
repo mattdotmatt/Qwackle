@@ -29,7 +29,7 @@
   };
 
   auth.ensureApiAuthenticated = function (req, res, next) {
-    if (req.isAuthenticated()) { 
+    if (req.isAuthenticated()) {
       next();
     } else {
       res.send(401, "Not authorized");
@@ -54,54 +54,6 @@
     });
     app.use(passport.initialize());
     app.use(passport.session());
-
-    app.get("/login", function (req, res) {
-      res.render("login", { title: "Login to The Board", message: req.flash("loginError") });
-    });
-
-    app.post("/login", function (req, res, next) {
-      var authFunction = passport.authenticate("local", function (err, user, info) {
-        if (err) {
-          next(err);
-        } else {
-          req.logIn(user, function (err) {
-            if (err) {
-              next(err);
-            } else {
-              res.redirect("/");
-            }
-          });
-        }
-      });
-      authFunction(req, res, next);
-    });
-
-    app.get("/register", function (req, res) {
-      res.render("register", { title: "Register for The Board", message: req.flash("registrationError") });
-    });
-
-    app.post("/register", function (req, res) {
-
-      var salt = hasher.createSalt();
-
-      var user = {
-        name: req.body.name,
-        email: req.body.email,
-        username: req.body.username,
-        passwordHash: hasher.computeHash(req.body.password, salt),
-        salt: salt 
-      };
-
-      data.addUser(user, function (err) {
-        if (err) {
-          req.flash("registrationError", "Could not save user to database.");
-          res.redirect("/register");
-        } else {
-          res.redirect("/login");
-        }
-      });
-    });
-
   };
 
 })(module.exports);
